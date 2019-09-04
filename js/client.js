@@ -209,6 +209,17 @@ const disqualify = (mindex, rindex, pindex) => {
 	guiInit();
 };
 
+const playoff = () => {
+	console.log('client.playoff called');
+
+	cars = configuration.loadRound(currManche, currRound);
+	if (cars) {
+		// popup to choose players
+		// interface must roll the timer only for the selected players
+		// data is refreshed only for the chosen players at the end
+	}
+};
+
 // Reads all input fields in the manches tab and rebuilds time list
 const overrideTimes = () => {
 	console.log('client.overrideTimes called');
