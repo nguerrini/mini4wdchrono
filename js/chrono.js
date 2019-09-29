@@ -32,16 +32,11 @@ const init = (track, playerIds, cars) => {
 	if (track) {
 		// cutoff time calculation
 		rTrackLength = track.length;
-		rLaneOrder = _.map(track.order, (i) => { return i-1; });
-		rTimeThreshold = configuration.readSettings('timeThreshold')/100;
+		rLaneOrder = _.map(track.order, (i) => { return i - 1; });
+		rTimeThreshold = configuration.readSettings('timeThreshold') / 100;
 		rSpeedThreshold = configuration.readSettings('speedThreshold');
 		rTimeCutoffMin = rTrackLength / 3 / rSpeedThreshold * (1 - rTimeThreshold) * 1000;
 		rTimeCutoffMax = rTrackLength / 3 / rSpeedThreshold * (1 + rTimeThreshold) * 1000;
-
-		// console.log('track length ' + rTrackLength);
-		// console.log('track order ' + rLaneOrder);
-		// console.log('time cutoff min ' + rTimeCutoffMin);
-		// console.log('time cutoff max ' + rTimeCutoffMax);
 	}
 
 	if (cars == null) {
@@ -77,7 +72,7 @@ const addLap = (lane) => {
 	// current time in milliseconds
 	let timestamp = new Date().getTime();
 
-	console.log("======= got signal " + lane + " time " + timestamp);
+	console.log(`======= got signal for lane ${lane} at time ${timestamp}`);
 	// console.log(JSON.stringify(rCars, null, 2));
 
 	// find all cars that may have passes under this lane sensor
@@ -94,11 +89,11 @@ const addLap = (lane) => {
 
 	// false sensor read
 	if (rTempCar == null) {
-		console.log('Error: no valid car for signal on lane ' + lane);
+		console.log(`error: no valid car for signal on lane ${lane}`);
 		return;
 	}
 	else {
-		console.log('valid car ' + rTempCar.startLane);
+		console.log(`ok: valid car ${rTempCar.startLane}`);
 	}
 
 	// handle the correct car
@@ -119,7 +114,7 @@ const calculateCar = (car, timestamp) => {
 		car.nextLane = nextLane(car.nextLane);
 		car.currTimestamp = timestamp;
 		car.currTime = timestamp - car.startTimestamp;
-		car.speed = (rTrackLength/3)*(car.lapCount-1)/(car.currTime/1000);
+		car.speed = (rTrackLength / 3) * (car.lapCount - 1) / (car.currTime / 1000);
 		if (car.lapCount == 4) {
 			// finish
 			car.endTimestamp = timestamp;
@@ -135,9 +130,9 @@ const calculateRace = () => {
 
 	// first are the cars with the highest lap count,
 	// then with same lapCount first is the one with lowest time
-	_.each([4,3,2], (lap) => {
+	_.each([4, 3, 2], (lap) => {
 		let runningCars = _.filter(rCars, (c) => { return c.lapCount == lap; });
-		_.each(_.sortBy(runningCars, 'currTime'), (c,i) => {
+		_.each(_.sortBy(runningCars, 'currTime'), (c, i) => {
 			if (lap == bestLap) {
 				if (i == 0) {
 					bestTime = c.currTime;
