@@ -184,6 +184,22 @@ $('.tabs a').on('click', (e) => {
 	$('#button-manches-cancel').attr('disabled', true);
 });
 
+// modals
+$('.open-modal').on('click', (e) => {
+	let $this = $(e.currentTarget);
+	openModal($this.data('modal'));
+});
+
+const openModal = (modal) => {
+	$(`#${modal}`).addClass('is-active');
+	$(document.documentElement).addClass('is-clipped');
+};
+
+$('.close-modal').on('click', (e) => {
+	$('.modal').removeClass('is-active');
+	$(document.documentElement).removeClass('is-clipped');
+});
+
 document.onkeydown = (e) => {
 	if (!debugMode) {
 		return;
@@ -235,23 +251,20 @@ $('#button-start').on('click', (e) => {
 		return;
 	}
 
-	if (debugMode) {
-		// debug mode
-		ui.raceStarted();
-		client.initRound();
-		client.startRound();
+	if (!client.isFreeRound() && configuration.loadTournament() && configuration.loadRound()) {
+		// round already played, start a playoff
+		openModal('modal-playoff');
 	}
 	else {
-		// production mode
-		if (!client.isFreeRound() && configuration.loadTournament() && configuration.loadRound()) {
-			// TODO MODAL SPAREGGIO
-
-			if (dialog.showMessageBox({ type: 'warning', message: i18n.__('dialog-replay-round'), buttons: ['Ok', 'Cancel'] }) == 1) {
-				return;
-			}
-		}
+		// new unplayed round
 		ui.raceStarted();
-		playStart();
+		if (debugMode) {
+			client.initRound();
+			client.startRound();
+		}
+		else {
+			playStart();
+		}
 	}
 });
 
