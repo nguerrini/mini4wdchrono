@@ -395,6 +395,17 @@ const initRace = (freeRound) => {
 	}
 };
 
+const initRepeatModal = () => {
+	let playerList = configuration.loadPlayerList();
+	let cars = configuration.loadRound();
+	$('#modal-playoff-players').empty();
+	_.each(cars, (car) => {
+		if (car.playerId >= 0) {
+			$('#modal-playoff-players').append(`<a href="#" class="button is-success is-outlined is-uppercase">${playerList[car.playerId]}</a>`);
+		}
+	});
+};
+
 const drawRace = (cars, running) => {
 	$('.js-place').removeClass('is-dark is-light is-primary is-warning');
 	$('.js-delay').removeClass('is-danger');
@@ -496,6 +507,7 @@ module.exports = {
 	showNextRoundNames: showNextRoundNames,
 	getSortedPlayerList: getSortedPlayerList,
 	initRace: initRace,
+	initRepeatModal: initRepeatModal,
 	drawRace: drawRace
 
 };

@@ -253,6 +253,7 @@ $('#button-start').on('click', (e) => {
 
 	if (!client.isFreeRound() && configuration.loadTournament() && configuration.loadRound()) {
 		// round already played, start a playoff
+		ui.initRepeatModal();
 		openModal('modal-playoff');
 	}
 	else {
