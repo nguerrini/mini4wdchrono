@@ -527,7 +527,10 @@
 		<div class="content">
 			<p class="title is-4">Mini4WD Chrono - by Pimentoso 2019</p>
 			<p id="js-about-version"></p>
-			<p><a href="https://github.com/Pimentoso/mini4wdchrono/releases" class="tn" data-tn="label-check-updates">check for updates</a></p>
+			<p>
+				<a href="https://github.com/Pimentoso/mini4wdchrono/releases" class="tn button is-link is-outlined" data-tn="label-check-updates">check for updates</a>
+				<a id="button-log-file" class="tn button is-outlined" data-tn="button-open-log">open log file</a>
+			</p>
 			<hr />
 			<p class="title is-4 tn" data-tn="label-paypal">If you enjoy this program, buy me a coffee!</p>
 			<p><a href="https://paypal.me/pimentoso" class="button is-link">Paypal</a></p>
@@ -536,6 +539,27 @@
 			<p><a href="https://mini4wd-track-editor.pimentoso.com/" class="button is-success is-outlined">Mini4WD Track Editor</a></p>
 			<p><a href="https://mini4wd-tournament.pimentoso.com/" class="button is-link is-outlined">Mini4WD Tournament Generator</a></p>
 			<p><a href="https://github.com/Pimentoso/mini4wdchrono" class="button is-outlined">Project page on Github</a></p>
+		</div>
+	</div>
+
+	<div id="modal-playoff" class="modal">
+		<div class="modal-background"></div>
+		<div class="modal-card">
+			<header class="modal-card-head">
+				<p class="modal-card-title">Repeat this round</p>
+				<button class="delete close-modal" aria-label="close"></button>
+			</header>
+			<section class="modal-card-body">
+				<div class="content">
+					<p>This round was already played. Select the players that will run it again:</p>
+					<div id="modal-playoff-players" class="buttons is-centered">
+					</div>
+				</div>
+			</section>
+			<footer class="modal-card-foot" style="justify-content: flex-end;">
+					<button class="button close-modal">Cancel</button>
+					<button class="button is-link close-modal">Start round</button>
+			</footer>
 		</div>
 	</div>
 
