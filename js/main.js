@@ -200,6 +200,17 @@ $('.close-modal').on('click', (e) => {
 	$(document.documentElement).removeClass('is-clipped');
 });
 
+// toggle buttons
+$('.js-repeat-player').on('click', (e) => {
+	let $this = $(e.currentTarget);
+	let playerId = $this.data('player-id');
+	let repeatPlayerIds = $('#modal-playoff-players').data('player-ids');
+	repeatPlayerIds.push(playerId);
+	repeatPlayerIds = _.uniq(repeatPlayerIds);
+	$('#modal-playoff-players').data('player-ids', repeatPlayerIds);
+});
+
+// keydown
 document.onkeydown = (e) => {
 	if (!debugMode) {
 		return;
@@ -207,6 +218,7 @@ document.onkeydown = (e) => {
 	client.keydown(e.keyCode);
 };
 
+// ui observers
 $('#js-load-track').on('click', (e) => {
 	let code = $('#js-input-track-code').val().slice(-6);
 	client.loadTrack(code);

@@ -399,9 +399,10 @@ const initRepeatModal = () => {
 	let playerList = configuration.loadPlayerList();
 	let cars = configuration.loadRound();
 	$('#modal-playoff-players').empty();
+	$('#modal-playoff-players').removeData('player-ids');
 	_.each(cars, (car) => {
 		if (car.playerId >= 0) {
-			$('#modal-playoff-players').append(`<a href="#" class="button is-success is-outlined is-uppercase">${playerList[car.playerId]}</a>`);
+			$('#modal-playoff-players').append(`<a href="#" class="button button-toggle is-success is-outlined is-uppercase js-repeat-player" data-player-id="${car.playerId}">${playerList[car.playerId]}</a>`);
 		}
 	});
 };
