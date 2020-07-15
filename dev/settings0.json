@@ -9,6 +9,7 @@
   "ledPin1": 3,
   "ledPin2": 4,
   "ledPin3": 5,
+  "ledPin4": 13,
   "piezoPin": 2,
   "sensorThreshold": 50,
   "title": "--",

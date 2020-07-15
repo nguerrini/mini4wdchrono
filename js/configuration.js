@@ -7,6 +7,7 @@ const path = require('path');
 const LedManagerMock = require('./led_managers/led_manager_mock');
 const LedManagerRgbStrip = require('./led_managers/led_manager_rgb_strip');
 const LedManagerLilypad = require('./led_managers/led_manager_lilypad');
+const LedManagerRicky = require('./led_managers/led_manager_ricky');
 
 // %APPDATA% on Windows
 // $XDG_CONFIG_HOME or ~/.config on Linux
@@ -26,6 +27,7 @@ const init = () => {
 		'ledPin1': 3,
 		'ledPin2': 4,
 		'ledPin3': 5,
+		'ledPin4': 13,
 		'piezoPin': 2,
 		// 'usbPort': 'COM3',
 		'title': 'MINI4WD CHRONO'
@@ -63,6 +65,9 @@ const ledManager = () => {
 	}
 	else if (get('ledType') == 1) {
 		return LedManagerRgbStrip.getInstance();
+	}
+	else if (get('ledType') == 2) {
+		return LedManagerRicky.getInstance();
 	}
 	else {
 		return LedManagerMock.getInstance();

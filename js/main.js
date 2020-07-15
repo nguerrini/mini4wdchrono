@@ -94,6 +94,17 @@ else if (configuration.get('ledType') == 1) {
 		configuration.get('piezoPin')
 	);
 }
+else if (configuration.get('ledType') == 2) {
+	const LedManagerRicky = require('./js/led_managers/led_manager_ricky');
+	ledManager = LedManagerRicky.getInstance(board, [
+			configuration.get('ledPin1'),
+			configuration.get('ledPin2'),
+			configuration.get('ledPin3'),
+			configuration.get('ledPin4')
+		],
+		configuration.get('piezoPin')
+	);
+}
 
 // translate ui
 $('.tn').each(function () {
@@ -388,6 +399,7 @@ $('#button-save-config').on('click', (e) => {
 	configuration.set('ledPin1', parseInt($('#js-config-led-pin-1').val()));
 	configuration.set('ledPin2', parseInt($('#js-config-led-pin-2').val()));
 	configuration.set('ledPin3', parseInt($('#js-config-led-pin-3').val()));
+	configuration.set('ledPin4', parseInt($('#js-config-led-pin-4').val()));
 	configuration.set('piezoPin', parseInt($('#js-config-piezo-pin').val()));
 	configuration.set('title', $('#js-config-title').val());
 	configuration.set('usbPort', $('#js-config-usb-port').val());

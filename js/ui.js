@@ -38,6 +38,7 @@ const init = () => {
 	$('#js-config-led-pin-1').val(configuration.get('ledPin1'));
 	$('#js-config-led-pin-2').val(configuration.get('ledPin2'));
 	$('#js-config-led-pin-3').val(configuration.get('ledPin3'));
+	$('#js-config-led-pin-4').val(configuration.get('ledPin4'));
 	$('#js-config-piezo-pin').val(configuration.get('piezoPin'));
 	$('#js-config-title').val(configuration.get('title'));
 
